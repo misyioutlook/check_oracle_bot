@@ -153,6 +153,10 @@ def check_command(update: Update, context: MyContext) -> None:
     context.user_data['dead_cnt'] = res[const.DEAD] | res[const.VOID]
 
     text = f'🟢正常账号数：{len(res[const.LIVE])}\n💀异常账号数：{len(res[const.DEAD]) + len(res[const.VOID])}\n'
+    text += f'正常账号包括：\n'
+        if len(res[const.DEAD]) > 0:
+            text += f'正常账号列表：<code>{"<code> </code>".join(res[const.LIVE])}</code>\n'
+
     if len(res[const.DEAD]) + len(res[const.VOID]) > 0:
         text += f'异常账号包括：\n'
         if len(res[const.DEAD]) > 0:
